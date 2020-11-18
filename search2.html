@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<div style="
+border-style: hidden;
+border-color: lightgreen;
+border-block-color:lightgreen
+width =50px;
+height:20p;
+">
+<h1 style="text-align:center;color: black; width: 40% margin: auto;">Search Employee</h1>
+</div>
+
+<div style="text-align: center;
+border-style: solid;
+border-color: grey;
+border-width: 1px;
+background-origin: padding-box;
+background-color: #f2f2f2; 
+">
+<body>
+    <div style="text-align: center;">
+      <br><br><br><br>
+      <label>Select Attribute:</label>
+      <select id="atr">
+      <option default>select</option>
+      <option value="empid">Employee ID</option>
+      <option value="empname">Employee Name</option>
+      <option value="age">Employee Age</option> 	
+      </select>
+      <br><br>
+
+      <label for="det">Employee Detail:</label>
+      <input type="text" id="det" name="det">  
+      <br><br>
+      <button style="  
+      background-color: green; 
+      color: white; 
+      align-items: center;
+      border: 2px solid #4CAF50
+      " ; onclick="check()">Search</button>
+
+<script>
+function check(){
+var letters = /^[A-Za-z]+$/;
+var num = /^[0-9]+$/;
+var dob = new Date(1999, 9, 7);
+function calculateAge(dob) { 
+    var diff_ms = Date.now() - dob.getTime();
+    var age_dt = new Date(diff_ms); 
+  
+    return Math.abs(age_dt.getUTCFullYear() - 1970);
+}
+var b=document.getElementById("atr").value;
+if (b=="empid"){
+if (document.getElementById("det").value.match(num)){
+if (document.getElementById("det").value == 111)
+{
+alert("Employee found is:\nId : 111\nName : Jaswanthi\nAddress : Chennai\nDOB : 07/09/1999\nMobile Number : 9876543212");
+}
+else{
+alert("Employee Not Found");
+}
+}
+else{
+alert("Enter detail in right format")
+}
+}
+else if (b=="empname"){
+if (document.getElementById("det").value.match(letters)){
+if (document.getElementById("det").value.charAt(0) == 'J' || document.getElementById("det").value.charAt(0) == 'j'){
+alert("Employee found is:\nId : 111\nName : Jaswanthi\nAddress : Chennai\nDOB : 07/09/1999\nMobile Number : 9876543212");
+}
+else{
+alert("Employee Not Found");
+}
+}
+else{
+alert("Enter detail in right format")
+}
+}
+if (b=="age"){
+
+if (document.getElementById("det").value.match(num)){
+if (document.getElementById("det").value == calculateAge(dob)){
+alert("Employee found is:\nId : 111\nName : Jaswanthi\nAddress : Chennai\nDOB : 07/09/1999\nMobile Number : 9876543212");
+}
+else{
+alert("Employee Not Found");
+}
+}
+else{
+alert("Enter detail in right format");
+}
+}
+}
+</script>
+<br><br><br><br>
+</div>
+</body>
+</html>
