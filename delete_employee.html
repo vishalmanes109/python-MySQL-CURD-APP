@@ -1,15 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- 
-# TODO
+<head>
+    <title>Delete</title>
 
-1. Create form to get input from uer for following attribute of employee
+</head>
+<div style="
+border-style: hidden;
+border-color: lightgreen;
+border-block-color:lightgreen
+width =50px;
+height:20p;
+">
+    <h1 style="text-align:center; background-color: lightgreen;color: white;">Delete Employee</h1>
+    <br><br><br>
 
-Employye id 
-Employye name 
-Delete Button
-Confirm popup before deleting
 
-2. Style the form using
-CSS(mandatory)
-bootstrap/semantic(Optional)
--->
+<div style="text-align: center;
+border-style: solid;
+border-color: #4CAF50;
+border-width: 1px;
+background-origin: padding-box;;
+
+">
+
+
+    <body>
+        <div style="text-align: center;">
+            <br><br><br>
+            <label>Enter EmployeeID:</label>
+            <input type="text" placeholder="EmployeeID" id="stype" name="stype">
+            <button style="background: blue;color: white;" onclick="ValidateData()">Search</button>
+            <br><br><br><br><br>
+            <label>Employee Name:</label>
+            <input type="text" id="EName" name="EName"  disabled>
+
+
+            <br><br>
+
+
+            <button style="  
+            background-color: green; 
+            color: white; 
+            align-items: center;
+            border: 2px solid #4CAF50
+            " ; onclick="ValidateDelete()">Delete</button>
+        </div>
+
+
+
+
+        <script>
+
+            function ValidateDelete(){
+                console.log(document.getElementById("stype").value)
+
+
+                if(required(document.getElementById("stype").value))
+                {
+                alert("Record "+document.getElementById("stype").value +" deleted successfully" )
+                document.getElementById("stype").value=""
+                document.getElementById("EName").value=""
+                }
+                else
+                {
+                    alert("Enter EmployeeID")
+                }
+
+            }
+
+
+
+            function ValidateData() {
+                var newstype=document.getElementById("stype").value
+                console.log(newstype)
+                if (required(newstype)) {
+                    
+                        alert("Employee found!")
+                        document.getElementById("EName").value= "ABC"+newstype
+                
+
+                }
+                else
+                        alert("Enter EmployeeID")
+
+            }
+
+                    function required(inputtx) {
+                        if (inputtx.length == 0) {
+                            return false;
+                        }
+                        return true;
+                    }
+        </script>
+    </body>
+
+</html>
