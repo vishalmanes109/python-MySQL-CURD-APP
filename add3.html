@@ -28,17 +28,24 @@ input[type=submit] {
   display: inline-block;
 }
 
+.container{
+  width: 30%;
+  margin: auto;
+}
+.text{
+  text-align: center;
+}
+
+td{
+  font-size: 14px;
+}
 </style>
 </head>
-<body>
-<h2>EMPLOYEE ADDITION<h2>
+<body class="container">
+<h2 class="text">ADD EMPLOYEE <h2>
 <div class="emp">
-<form>
+<form >
 <table>		
-    <tr>
-	<td>Employee Id:</td>
-	<td><input type="text" placeholder="Enter Employee Id" id="Empid" pattern="[0-9]{1,}"></td>
-    </tr>
     <tr>
 	<td>Employee Name:</td>
 	<td><input type="text" placeholder="Enter Employee name" id="Empname" required pattern="[A-Za-z]{1,}"></td>
@@ -65,7 +72,7 @@ input[type=submit] {
 <script>
 function add()
 {
-alert("Employee Added");
+//alert("Employee Added");
 }
 </script>
 </html>

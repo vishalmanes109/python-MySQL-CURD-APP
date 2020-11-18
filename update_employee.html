@@ -1,14 +1,163 @@
-<!-- 
-# TODO
+<!DOCTYPE html>
+<html lang="en">
 
-1. create form to get input from uer for following attribute of employee
+<head>
+  <title>Update</title>
 
-emp Id : Optional
-emp Name: mandatory, String
-Dropdown to select which attribute has to be updates
-Update Button
+</head>
+<div style="
+border-style: hidden;
+border-color: lightgreen;
+border-block-color:lightgreen
+width =50px;
+height:20p;
+">
+  <h1 style="text-align:center; background-color: lightgreen;color: white;">Update Employee Details</h1>
+  <br><br><br>
 
-2. Style the form using
-CSS(mandatory)
-bootstrap/semantic(Optional)
--->
+</div>
+<div style="text-align: center;
+border-style: solid;
+border-color: #010201;
+border-width: 1px;
+background-origin: padding-box;;
+
+">
+
+  <body>
+    <div style="margin: auto;
+    width: 80%;
+    padding: 20px;">
+      <br><br><br>
+      <label>Enter EmployeeID:</label>
+      <input type="text" placeholder="EmployeeID" id="stype" name="stype">
+      <button style="background: blue;color: white;" onclick="ValidateData()">Validate</button>
+      <br><br><br><br><br>
+
+
+      <div>
+        <label>Date of Birth</label>
+        <input type="date" id="DoB" name="DoB" disabled>
+        
+        <br><br><br>
+        <label>Mobile Number</label>
+        <input type="tel" id="MobileNo" name="MobileNo" pattern="[789][0-9]{9} required" disabled>
+
+        <br><br><br>
+        <div">
+        <label  style="vertical-align: top">Address</label>
+        <textarea rows="4" cols="50" id="Address" name="comment"placeholder="Address" disabled></textarea>
+        </div>
+      </div>
+      <br><br><br>
+
+
+
+
+      <button style="  
+      background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2%;
+      " ; onclick="ValidateUpdate()">Update</button>
+
+
+
+      <script>
+        function ValidateData() {
+          if (required(document.getElementById("stype").value)) {
+            alert("Employee found!")
+            document.getElementById("stype").disabled = true
+            document.getElementById("MobileNo").disabled = false
+            document.getElementById("DoB").disabled = false
+            document.getElementById("Address").disabled = false
+          }
+          else
+            alert("Enter EmployeeID")
+
+          
+        }
+
+
+        function required(inputtx) {
+          if (inputtx.length == 0) {
+            return false;
+          }
+          return true;
+        }
+
+
+        function ValidateUpdate() {
+          var DoB = document.getElementById("DoB").value
+          var Address = document.getElementById("Address").value
+          var MobileNo = document.getElementById("MobileNo").value
+          if ((required(DoB) && required(Address) && required(MobileNo)))
+          {
+            alert("No Details Were Updated")
+            return
+          }
+          ValidateMobileNo()
+          ValidateAge()
+          ValidateAddress()
+
+        
+          
+
+        }
+        function ValidateAddress(){
+          var Address =document.getElementById("Address").value
+          if(Address.length>0)
+          {
+            alert("Address Updated Successfully")
+            return true
+          }
+        }
+
+        function ValidateMobileNo() {
+          var MobileNo = document.getElementById("MobileNo").value
+          if(MobileNo.length>0){
+          if (/^\d{10}$/.test(MobileNo)) {
+            alert("Mobile Number Update Successfully")
+            return true
+          } else {
+            alert("Invalid number; must be ten digits")
+            number.focus()
+            return false
+          }
+          }
+        }
+
+        function calculate_age(dob) { 
+    var diff_ms = Date.now() - dob
+    console.log(dob)
+    var age_dt = new Date(diff_ms); 
+  
+    return Math.abs(age_dt.getUTCFullYear() - 1970);
+}
+      function ValidateAge(){
+        if(document.getElementById("DoB").value.length>0)
+        var age=calculate_age(document.getElementById("DoB").value)
+        console.log(age)
+        if(age>18)
+      {
+        alert("Birth Date Updated Successfully")
+        return true
+      }
+        else
+       { 
+        alert("Age can not be less that 18")
+        return false
+       }
+      }
+
+      </script>
+
+    </div>
+  </body>
+
+</html>
