@@ -1,15 +1,15 @@
 CREATE TABLE Employees
 (
-EmpID int NOT NULL,
+EmpID int NOT NULL AUTO_INCREMENT,
 EmpName varchar(255),
 EmpAddress varchar(255),
-EmpDOB varchar(11),
-EmpMobile int,
+EmpDOB Date,
+EmpMobile bigint,
 PRIMARY KEY (EmpID)
 );
 
 INSERT INTO Employees (EmpID, EmpName, EmpAddress, EmpDOB, EmpMobile)
-VALUES ('1001','Tom','21 Old Street, UK','11-11-2004','5544789631');
+VALUES ('1001','Tom','21 Old Street, UK','2004-11-11','5544789631');
 
 DELETE FROM Employees WHERE EmpID='1001';
 

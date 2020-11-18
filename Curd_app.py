@@ -1,11 +1,21 @@
 import mysql.connector
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+HOST = os.environ.get("HOST")
+USER = os.environ.get("USER")
+DATABASE = os.environ.get("DATABASE")
 
 # creating databse conection instance
 
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  database="curd_app"
+  host=HOST,
+  user=USER,
+  database=DATABASE
 )
 
 # creating databse cursor
@@ -37,29 +47,66 @@ def deleteemployee(ename,eid):
 
 
 def updateeployee(ename,eid):
-  eaddress = input("Enter The new address: ").strip().title()
+  print("Enter 1: to Update  Address")
+  print("Enter 2: to Update DOB ")
+  print("Enter 3: to Update Mobile no. ")
+  sel = int(input("Enter choice: "))
 
-  print("updating Employee")
+  if (sel==1):
+    eaddress = input("Enter The new address: ").strip().title()
+    print("updating Employee")
 
-  sql = "UPDATE employee SET eaddress = %s WHERE eid = %s"
-  val = (eaddress, eid)
+    sql = "UPDATE employee SET eaddress = %s WHERE eid = %s"
+    val = (eaddress, eid)
 
-  cursor.execute(sql, val)
+    cursor.execute(sql, val)
 
-  mydb.commit()
+    mydb.commit()
 
-  print(cursor.rowcount, "record(s) affected")
-  print("employee Updated")
+    print(cursor.rowcount, "record(s) affected")
+    print("employee Updated")
+
+  elif(sel==2):
+    edob = input("Enter The new DOB (YY-MM-DD): ").strip()
+
+    print("updating Employee")
+
+    sql = "UPDATE employee SET edob = %s WHERE eid = %s"
+    val = (edob, eid)
+
+    cursor.execute(sql, val)
+
+    mydb.commit()
+
+    print(cursor.rowcount, "record(s) affected")
+    print("employee Updated") 
+    
+  elif(sel==3):
+    emobile = input("Enter The new Mobile No : ").strip()
+
+    print("updating Employee")
+
+    sql = "UPDATE employee SET emobile = %s WHERE eid = %s"
+    val = (emobile, eid)
+
+    cursor.execute(sql, val)
+
+    mydb.commit()
+
+    print(cursor.rowcount, "record(s) affected")
+    print("employee Updated")
+
 
 
 def searchemployee():
   
-  print("Enter 1: to Search By ID")
-  print("Enter 2: to Search By name")
-  print("Enter 3: to Search By mobile no")
+  print("\nEnter 1: to Search By ID")
+  print("Enter 2: to Search By Name")
+  print("Enter 3: to Search By  Age\n")
   sel = int(input("Enter choice: "))
   if(sel == 1):
     eid = int(input("Enter Emp id: "))
+    
     sql = ("SELECT * FROM employee where eid=%s")
     eid=(eid,)
     cursor.execute(sql, eid)
@@ -68,7 +115,13 @@ def searchemployee():
       print("No record Found")
     else:    
       for emp in res:
-        print(emp)
+        print("**Employee Details**")
+        print("id: ", emp[0] )
+        print("name :",emp[1])
+        print("address: ",emp[2])
+        print("DOB: ",emp[3])
+        print("Mobile No: ",emp[4])
+        print("**END**")
 
   elif(sel == 2):
     ename = input("Enter Name of Employee which has to be search: ").strip().title()
@@ -80,8 +133,15 @@ def searchemployee():
     if(len(res) == 0):
       print("No record Found")
     else:
+      print(len(res)," Employee Found")
       for emp in res:
-        print(emp)
+        print("**Employee Details**")
+        print("id: ", emp[0])
+        print("name :", emp[1])
+        print("address: ", emp[2])
+        print("DOB: ", emp[3])
+        print("Mobile No: ", emp[4])
+        print("**END**")
 
   elif(sel == 3):
     emobile = input("Enter Mobile no  of Employee which has to be Search: ")
@@ -94,7 +154,13 @@ def searchemployee():
       print("No record Found")
     else:
       for emp in res:
-        print(emp)
+        print("**Employee Details**")
+        print("id: ", emp[0])
+        print("name :", emp[1])
+        print("address: ", emp[2])
+        print("DOB: ", emp[3])
+        print("Mobile No: ", emp[4])
+        print("**END**")
 
   else:
     print("Enter Valid choice for searching")
@@ -118,17 +184,17 @@ def menu():
   """
 
   while(True):
-    print("Enter 1: ADD Employee")
+    print("\nEnter 1: ADD Employee")
     print("Enter 2: Update Employee")
     print("Enter 3: Delete Employee")
     print("Enter 4: Search Employee")
-    print("Enter 9: Exit")
+    print("Enter 9: Exit\n")
     choice = int(input("Enter Your Choice: ").strip())
 
     if(choice == 1):
       ename = input("Enter Name: ").strip().title()
       eadd = input("Enter Address: ").strip().title()
-      edob = input("Enter Date Of Birth: ").strip()
+      edob = input("Enter Date Of Birth (YY-MM-DD): ").strip()
       emobile = input("ENter Mobile No: ").strip()
       addemployee(ename, eadd, edob, emobile)
     elif(choice == 2):
@@ -151,8 +217,8 @@ def menu():
       break  
 
     else:
-      print("Enter proper choice: ")
+      print("Enter proper choice ")
 
-print("*****Welocome to employee Database Management*******")
-print(" \n\n")
+print("\n*****Welocome to employee Database Management*******")
+print(" ")
 menu()
