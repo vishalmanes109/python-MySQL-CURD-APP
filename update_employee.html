@@ -33,9 +33,21 @@ background-origin: padding-box;;
       <input type="text" placeholder="EmployeeID" id="stype" name="stype">
       <button style="background: blue;color: white;" onclick="ValidateData()">Validate</button>
       <br><br><br><br><br>
+      <label for="Update">Select attribute:</label> 
 
+  <select name="Options" id="Options">
+    <option></option>
+    <option value="DoB">Birth Date</option>
+    <option value="MobileNo"> Mobile Number</option>
+    <option value="Address">Address</option>
+    <input type="submit" id="Select" value="Select" onclick="GenerateTextField(Options)">
+    <br><br>
+    <div id="newInputBox">Update:</div>
 
-      <div>
+  </select>
+  <br> <br><br>
+
+  <!--   < <div>
         <label>Date of Birth</label>
         <input type="date" id="DoB" name="DoB" disabled>
         
@@ -48,9 +60,9 @@ background-origin: padding-box;;
         <label  style="vertical-align: top">Address</label>
         <textarea rows="4" cols="50" id="Address" name="comment"placeholder="Address" disabled></textarea>
         </div>
-      </div>
+      </div>>
       <br><br><br>
-
+-->
 
 
 
@@ -69,13 +81,39 @@ background-origin: padding-box;;
 
 
       <script>
+
+        function GenerateTextField(Options){
+          document.getElementById("Select").disabled=true
+          if(Options.value=="MobileNo")
+          {
+            var MobileNo=document.createElement("div")
+            console.log("123")
+	        MobileNo.innerHTML = "<input type='tel' id='MobileNo'>";
+
+          document.getElementById("newInputBox").appendChild(MobileNo);
+
+          }
+          if(Options.value=="Address")
+          {
+            var Address=document.createElement("div")
+            console.log("address")
+            Address.innerHTML=" <input type='textarea' id='Address'>";
+            document.getElementById("newInputBox").appendChild(Address)
+          }
+          if(Options.value=="DoB"){
+            var DoB=document.createElement("div")
+            console.log("Birthdate")
+            DoB.innerHTML="<input type='date' id='DoB'>";
+            document.getElementById("newInputBox").appendChild(DoB)
+            
+          }
+
+        }
+
         function ValidateData() {
           if (required(document.getElementById("stype").value)) {
             alert("Employee found!")
-            document.getElementById("stype").disabled = true
-            document.getElementById("MobileNo").disabled = false
-            document.getElementById("DoB").disabled = false
-            document.getElementById("Address").disabled = false
+           
           }
           else
             alert("Enter EmployeeID")
@@ -93,20 +131,26 @@ background-origin: padding-box;;
 
 
         function ValidateUpdate() {
-          var DoB = document.getElementById("DoB").value
-          var Address = document.getElementById("Address").value
-          var MobileNo = document.getElementById("MobileNo").value
-          if ((required(DoB) && required(Address) && required(MobileNo)))
+          var t=document.getElementById("Options").value
+          if(t=="MobileNo")
           {
-            alert("No Details Were Updated")
-            return
-          }
-          ValidateMobileNo()
-          ValidateAge()
-          ValidateAddress()
+            console.log(document.getElementById("MobileNo").value)
+            ValidateMobileNo()
 
+          }
+//          ValidateAge()
+  //        ValidateAddress()
+          if(t=="Address")
+          {
+            console.log(document.getElementById("Address").value)
+            ValidateAddress()
+          }
         
-          
+          if(t=="DoB")
+          {
+            console.log(document.getElementById("DoB").value)
+            ValidateAge()
+          }
 
         }
         function ValidateAddress(){
@@ -132,16 +176,23 @@ background-origin: padding-box;;
           }
         }
 
-        function calculate_age(dob) { 
-    var diff_ms = Date.now() - dob
-    console.log(dob)
-    var age_dt = new Date(diff_ms); 
-  
-    return Math.abs(age_dt.getUTCFullYear() - 1970);
+      function calculate_age(dateString) 
+{
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    return age;
 }
+
       function ValidateAge(){
         if(document.getElementById("DoB").value.length>0)
         var age=calculate_age(document.getElementById("DoB").value)
+        console.log(document.getElementById("DoB").value)
         console.log(age)
         if(age>18)
       {

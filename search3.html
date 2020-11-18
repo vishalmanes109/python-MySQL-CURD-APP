@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<h2 style="text-align:center;
+color: black; 
+width: 50%; 
+margin: auto;">
+Search Employee</h2>
+<br>
+<style>
+input[type="text"], select{
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-size:10px;
+}
+
+input[type=submit]{
+  background-color: green;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+}
+.ser {
+  border-radius: 1px;
+  background-color: #f2f2f2;
+  padding: 40px;
+  display: inline-block;
+  margin : auto;
+}
+.b{
+  width: 30%;
+  margin: auto;
+}
+</style>
+</head>
+<body class="b">
+<div class="ser">
+<form>
+<table>
+<tr><td>Atrribute:</td>
+<td><select id="atr" required>
+<option value="">select</option> 
+<option value="empid">Employee Id</option>
+<option value="empname">Employee Name</option>
+<option value="age">Employee Age</option></select></td>
+</tr>
+
+<tr><td>Employee detail:</td>
+<td><input type="text" id="det"></td>
+</tr>
+
+<tr><td><input type="submit" onclick="check()"></td></tr>
+</table>
+</form>
+</div>
+</body>
+
+<script>
+function check(){
+var letters = /^[A-Za-z]+$/;
+var num = /^[0-9]+$/;
+var dob = new Date(1999, 9, 7);
+function calculateAge(dob) { 
+    var diff_ms = Date.now() - dob.getTime();
+    var age_dt = new Date(diff_ms); 
+  
+    return Math.abs(age_dt.getUTCFullYear() - 1970);
+}
+var b=document.getElementById("atr").value;
+if (b=="empid"){
+if (document.getElementById("det").value.match(num)){
+if (document.getElementById("det").value == 111)
+{
+alert("Employee found is:\nId : 111\nName : Jaswanthi\nAddress : Chennai\nDOB : 07/09/1999\nMobile Number : 9876543212");
+}
+else{
+alert("Employee Not Found");
+}
+}
+else{
+alert("Enter detail in right format")
+}
+}
+else if (b=="empname"){
+if (document.getElementById("det").value.match(letters)){
+if (document.getElementById("det").value.charAt(0) == 'J' || document.getElementById("det").value.charAt(0) == 'j'){
+alert("Employee found is:\nId : 111\nName : Jaswanthi\nAddress : Chennai\nDOB : 07/09/1999\nMobile Number : 9876543212");
+}
+else{
+alert("Employee Not Found");
+}
+}
+else{
+alert("Enter detail in right format")
+}
+}
+if (b=="age"){
+if (document.getElementById("det").value.match(num)){
+if (document.getElementById("det").value == calculateAge(dob)){
+alert("Employee found is:\nId : 111\nName : Jaswanthi\nAddress : Chennai\nDOB : 07/09/1999\nMobile Number : 9876543212");
+}
+else{
+alert("Employee Not Found");
+}
+}
+else{
+alert("Enter detail in right format");
+}
+}
+}
+</script>
+</html>
