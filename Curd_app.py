@@ -37,7 +37,7 @@ def deleteemployee(ename,eid):
 
 
 def updateeployee(ename,eid):
-  eaddress=input("Enter The new address")
+  eaddress = input("Enter The new address: ").strip().title()
 
   print("updating Employee")
 
@@ -59,34 +59,42 @@ def searchemployee():
   print("Enter 3: to Search By mobile no")
   sel = int(input("Enter choice: "))
   if(sel == 1):
-    eid = int(input("Enter Emp id "))
+    eid = int(input("Enter Emp id: "))
     sql = ("SELECT * FROM employee where eid=%s")
     eid=(eid,)
     cursor.execute(sql, eid)
     res = cursor.fetchall()
-      
-    for emp in res:
-      print(emp)
+    if(len(res)==0):
+      print("No record Found")
+    else:    
+      for emp in res:
+        print(emp)
 
   elif(sel == 2):
-    ename = input("Enter Name of Employee which has to be search")
-    sql = ("SELECT * FROM employee where eid=%s")
+    ename = input("Enter Name of Employee which has to be search: ").strip().title()
+    sql = ("SELECT * FROM employee where ename=%s")
     ename=(ename,)
     cursor.execute(sql, ename)
     res = cursor.fetchall()
 
-    for emp in res:
-      print(emp)
+    if(len(res) == 0):
+      print("No record Found")
+    else:
+      for emp in res:
+        print(emp)
 
   elif(sel == 3):
-    emobile = input("Enter Mobile no  of Employee which has to be Search")
+    emobile = input("Enter Mobile no  of Employee which has to be Search: ")
     sql = ("SELECT * FROM employee where emobile=%s")
     emobile=(emobile,)
     cursor.execute(sql, emobile)
     res = cursor.fetchall()
 
-    for emp in res:
-      print(emp)
+    if(len(res) == 0):
+      print("No record Found")
+    else:
+      for emp in res:
+        print(emp)
 
   else:
     print("Enter Valid choice for searching")
@@ -118,18 +126,20 @@ def menu():
     choice = int(input("Enter Your Choice: ").strip())
 
     if(choice == 1):
-      ename = input("Enter Name: ").strip()
-      eadd = input("Enter Address: ").strip()
+      ename = input("Enter Name: ").strip().title()
+      eadd = input("Enter Address: ").strip().title()
       edob = input("Enter Date Of Birth: ").strip()
       emobile = input("ENter Mobile No: ").strip()
       addemployee(ename, eadd, edob, emobile)
     elif(choice == 2):
-      ename = input("Enter Name of employee which has to be updated: ")
+      ename = input(
+          "Enter Name of employee which has to be updated: ").strip().title()
       eid = int(input("Enter Emp id: "))
       updateeployee(ename, eid)
 
     elif(choice == 3):
-      ename = input("Enter Name of Employee which has to be deleted: ")
+      ename = input(
+          "Enter Name of Employee which has to be deleted: ").strip().title()
       eid = int(input("Enter Emp id: "))
       deleteemployee(ename, eid)
 
