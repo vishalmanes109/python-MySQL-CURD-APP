@@ -3,35 +3,38 @@
 
 <head>
   <title>Update</title>
-
 </head>
+
+
 <div style="
-border-style: hidden;
-border-color: lightgreen;
-border-block-color:lightgreen
-width =50px;
-height:20p;
-">
-  <h1 style="text-align:center; background-color: lightgreen;color: white;">Update Employee Details</h1>
+text-align: center;
+
+ border-radius: 1px;
+            background-color: #f2f2f2;
+            padding: 50px;
+            display: inline-block;
+          margin-left: 25%;">
+  <h1 style="text-align:center;color: black;">UPDATE EMPLOYEE</h1>
   <br><br><br>
 
-</div>
-<div style="text-align: center;
-border-style: solid;
-border-color: #010201;
-border-width: 1px;
-background-origin: padding-box;;
 
-">
+<div style="text-align: center;">
 
   <body>
     <div style="margin: auto;
     width: 80%;
-    padding: 20px;">
+    padding: 20px;
+    text-align: center;
+  ">
       <br><br><br>
       <label>Enter EmployeeID:</label>
-      <input type="text" placeholder="EmployeeID" id="stype" name="stype">
-      <button style="background: blue;color: white;" onclick="ValidateData()">Validate</button>
+      <input type="text" placeholder="EmployeeID" id="stype" name="stype" style=" width:40%;
+      padding: 12px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+      font-size: 10px;">
+      <button style=" margin-top: 4% ; margin-left: 25%; background: blue;color: white;" onclick="ValidateData()">Validate</button>
       <br><br><br><br><br>
       <label for="Update">Select attribute:</label> 
 
@@ -42,7 +45,7 @@ background-origin: padding-box;;
     <option value="Address">Address</option>
     <input type="submit" id="Select" value="Select" onclick="GenerateTextField(Options)">
     <br><br>
-    <div id="newInputBox">Update:</div>
+    <div id="newInputBox" >Update:</div>
 
   </select>
   <br> <br><br>
@@ -67,18 +70,19 @@ background-origin: padding-box;;
 
 
       <button style="  
-      background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 2%;
+    background-color: green;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: left;
+            margin-left: 50%;
       " ; onclick="ValidateUpdate()">Update</button>
 
-
+</div>
+</div>
+</div>
 
       <script>
 
