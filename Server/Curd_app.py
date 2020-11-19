@@ -2,7 +2,7 @@ import mysql.connector
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
-import datetime
+import datetime 
 import re
 
 dotenv_path = join(dirname(__file__), '.env')
@@ -146,7 +146,7 @@ def searchemployee():
       print("No record Found")
     else:    
       for emp in res:
-        print("**Employee Details**")
+        print("\n**Employee Details**")
         print("id: ", emp[0] )
         print("name :",emp[1])
         print("address: ",emp[2])
@@ -167,9 +167,9 @@ def searchemployee():
     if(len(res) == 0):
       print("No record Found")
     else:
-      print(len(res)," Employee Found")
+      print(len(res)," Employee/s Found")
       for emp in res:
-        print("**Employee Details**")
+        print("\n**Employee Details**")
         print("id: ", emp[0])
         print("name :", emp[1])
         print("address: ", emp[2])
@@ -178,11 +178,7 @@ def searchemployee():
         print("**END**")
 
   elif(sel == 3):
-    today_date = date.today()
-    #print(today_date)
-    if(validdob(today_date)==False):
-      print("enter Valid Date (YYYY-MM-DD)")
-      searchemployee()
+    today_date = datetime.date.today()
     age = float(input("Enter age of Employee which has to be Search: ").strip())
     sql = ("select * , DATEDIFF(%s, edob) / 365.25 as age from employee")
     nowdate=(today_date,)
@@ -192,9 +188,10 @@ def searchemployee():
     if(len(res) == 0):
       print("No record Found")
     else:
+      print(len(res)," Employee/s Found"  )
       for emp in res:
         if(float(emp[5])>=age):
-          print("**Employee Details**")
+          print("\n**Employee Details**")
           print("id: ", emp[0])
           print("name :", emp[1])
           print("address: ", emp[2])
