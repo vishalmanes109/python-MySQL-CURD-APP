@@ -4,6 +4,6 @@ Case Study : Employee Database Management System
 Team No: 2
 
 Scrum Master     : Vishal Mane (1779734)
-Developer        : Jaswanti V  (1795943)
+Developer        : Jaswanthi V  (1795943)
 Developer        : Varad Rathod (1773097)
 Developer        : Shaivee Kumawat (1784239)
