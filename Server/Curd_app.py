@@ -45,9 +45,7 @@ def addemployee(ename,eadd,edob,emobile):
   print("Adding Employee in to databse...")
   sql = "INSERT INTO Employee (ename,eaddress,edob,emobile) VALUES ( %s,%s,%s,%s)"
   val = (ename,eadd,edob,emobile)
-
   cursor.execute(sql, val)
-
   mydb.commit()
   if(cursor.rowcount==0):
     print("ERROR: EMPLOYEE IS NOT ADDED")
@@ -67,7 +65,6 @@ def deleteemployee(ename,eid):
   else:  
     print(cursor.rowcount, "record(s) deleted")
     print("Employee Deleted")
-
 
 def updateeployee(ename,eid):
   print("Enter 1: to Update  Address")
@@ -133,10 +130,7 @@ def updateeployee(ename,eid):
       print(cursor.rowcount, "record(s) affected")
       print("employee Updated")
 
-
-
 def searchemployee():
-  
   print("\nEnter 1: to Search By ID")
   print("Enter 2: to Search By Name")
   print("Enter 3: to Search By  Age\n")
@@ -212,15 +206,10 @@ def searchemployee():
   else:
     print("Enter Valid choice for searching")
       
-    
-
-
 #addemployee()  
-
 #deleteemployee()
 #updateeployee()
 #searchemployee()
-
 
 def menu():
   """
@@ -240,7 +229,6 @@ def menu():
 
     if(choice == 1):
       ename = input("Enter Name:  ").strip().title()
-      
       
       eadd = input("Enter Address: ").strip().title()
       edob = input("Enter Date Of Birth (YYYY-MM-DD): ").strip()
@@ -277,7 +265,6 @@ def menu():
     elif(choice==9):
       print("Thanks ")
       break  
-
     else:
       print("Enter proper choice ")
 
